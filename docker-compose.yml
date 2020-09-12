@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  db:
+    image: 'postgres:12-alpine'
+    volumes:
+      - 'postgres:/var/lib/postgresql/data'
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+
+  redis:
+    image: 'redis:6-alpine'
+    command: redis-server
+    ports:
+      - '6379:6379'
+    volumes:
+      - 'redis:/data'
+
+  web:
+    depends_on:
+      - 'db'
+      - 'redis'
+    build: .
+    command: bash start.sh
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USERNAME=postgres
+
+volumes:
+  redis:
+  postgres:

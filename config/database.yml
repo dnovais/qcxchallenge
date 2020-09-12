@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV.fetch("DATABASE_HOST") { "localhost" } %>
+  port: <%= ENV.fetch("DATABASE_PORT") { 5432 } %>
+  username: <%= ENV.fetch("DATABASE_USERNAME") { "" } %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") { "" } %>
+
+development:
+  <<: *default
+  database: qcx_challenge_development
+
+test:
+  <<: *default
+  database: qcx_challenge_test
+
+production:
+  <<: *default
+  database: qcx_challenge_production
+  username: <%= ENV.fetch("DATABASE_USERNAME") { "qcx_challenge" } %>
+  password: <%= ENV.fetch("DATABASE_PASSWORD") { "" } %>
