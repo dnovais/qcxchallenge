@@ -27,8 +27,20 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 group :development, :test do
+  # rspec-rails brings the RSpec testing framework
+  gem 'rspec-rails', '~> 4.0.1'
+
+  # This gem is a port of Perl's Data::Faker library that generates fake data.
+  gem 'faker'
+
+  # This gem is a factory for our resources.
+  gem 'factory_bot_rails'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Shoulda Matchers provides one-liners to test common Rails functionalities
+  gem 'shoulda-matchers', '~> 4.0'
 end
 
 group :development do
