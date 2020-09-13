@@ -8,6 +8,9 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.lis
 # Install dependencies
 RUN apt-get update && apt-get install -qq -y --no-install-recommends \
 nodejs yarn build-essential libpq-dev imagemagick git-all nano
+
+# Install bundler
+RUN gem install bundler
  
 # Setting path
 ENV INSTALL_PATH /qcxchallenge
@@ -19,9 +22,12 @@ RUN mkdir -p $INSTALL_PATH
 WORKDIR $INSTALL_PATH
  
 # Copy our Gemfile to container
-COPY Gemfile ./
+COPY Gemfile Gemfile.lock ./
  
 # Setting path to gems
+ENV BUNDLE_PATH /gems
+
+# Install gems
 RUN bundle install
  
 # Copy our code to container
