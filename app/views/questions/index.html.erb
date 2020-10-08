@@ -1,0 +1,32 @@
+<div class="album py-5 bg-light">
+  <div class="container">
+    <h2>Questões mais acessadas</h2>
+    <hr>
+    <h5>Filtrar por:</h5>
+    <%= form_tag questions_path, method: :get do %>
+      Mais acessados por: <%= select_tag 'period', options_for_select({ 'semana' => 'week', 'mês' => 'month', 'ano' => 'year' }), include_blank: true %>
+      <%= submit_tag "Filtrar" %>
+    <% end %>
+    <hr>
+    <% @questions.each do |question| %>
+      <div class="row">
+        <div class="card w-100">
+          <div class="card-header text-left">
+            <b><%= question.discipline.name.titleize %></b>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= question.statement %></h5>
+            <p class="card-text"><%= question.text %></p>
+          </div>
+          <div class="card-footer text-muted">
+            <%= question.full_daily_access %> acessos diários.
+          </div>
+        </div>
+      </div>
+      <hr>
+    <% end %>
+    <div class="pages">
+      <%= will_paginate @questions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </div>
+  </div>
+</div>
