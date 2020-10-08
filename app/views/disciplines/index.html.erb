@@ -1,0 +1,26 @@
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+      <h2>Disciplinas de Concursos Públicos</h2>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Disciplina</th>
+            <th scope="col">Acessos</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @disciplines.each do |discipline| %>
+            <tr>
+              <td><%= discipline.discipline_name.titleize %></td>
+              <td><%= discipline.full_daily_access %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="pages">
+        <%#= will_paginate @disciplines, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+      </div>
+    </div>
+  </div>
+</div>
