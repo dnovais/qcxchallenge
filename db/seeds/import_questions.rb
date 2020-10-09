@@ -6,7 +6,7 @@ questions_file = File.read('db/questions_data/questions.json')
 questions_json = JSON.parse(questions_file)
 
 puts "Importing questions..."
-Parallel.each(questions_json, :in_processes => 8, progress: "Importing...") do |question_json|
+Parallel.each(questions_json, in_processes: 8, progress: "Importing...") do |question_json|
   discipline = Discipline.find_by(name: question_json['discipline'])
 
   question = Question.find_by(id: question_json['id'])
