@@ -1,6 +1,6 @@
 
 # <img src="https://odin.qconcursos.com/packs/images/logo/qc-47196578.svg" alt="qcx" width="24" /> Desafio QConcursos
-
+  
 O Qconcursos é plataforma online de resolução de questões de concursos e cursos, voltada para apoiar os estudantes a alcançarem a aprovação em concursos públicos e a evoluírem na sua vida profissional por meio da educação. Estamos em constante evolução e justamente por isso queremos evoluir o nosso serviço de buscas.
 
 ## Sobre o desafio
@@ -9,7 +9,6 @@ Você vai ser responsável por modelar e desenvolver esse serviço utilizando as
 
 **Disciplinas com questões mais quentes:**  Listar as disciplinas onde as questões foram as mais acessadas nas ultimas 24H  
 **Mais acessadas por periodo:**  Listar as questões mais acessadas por semana/mês/ano
-  
 ## Executando o projeto
 
 O projeto esta preparado para o uso do docker e caso prefira ou precise ele está pronto para rodar sem o uso do docker também.
@@ -30,7 +29,7 @@ O projeto esta preparado para o uso do docker e caso prefira ou precise ele est�
 	```
 4. Instalar gems e dependências
 	```
-	docker-compose run --rm app bundle exec bundle install
+	docker-compose run --rm app bundle exec bundle installg
 	```
 	```
 	docker-compose run --rm app bundle exec yarn install
@@ -82,6 +81,13 @@ O projeto esta preparado para o uso do docker e caso prefira ou precise ele est�
 	```
 	rails server
 	```
+
+### Para acessar o projeto no navegador
+
+```
+localhost:3000
+```
+
 ## Documentação
 Para este projeto foi fornecido os dados sobre as questões e acessos diários de cada questão no formato json. Nosso objetivo foi modelar o projeto para que fosse possível consumir estes dados e fornece-los aos clientes.
 
@@ -89,7 +95,8 @@ Para este projeto foi fornecido os dados sobre as questões e acessos diários d
 Para cada questão tem-se a preocupação de monitorar os acessos diários e para isso no projeto principal a cada acesso é disparado um método que atualiza a coluna de acesso diário deixando-a sempre atualizada e facilitando as consultas no banco de dados. Por este motivo no arquivo exportado em JSON (questions.json) temos a informação **daily_access**.
 
 ### Modelagem do banco de dados
-...
+
+![alt modelagem do banco](https://github.com/dnovais/qcxchallenge/raw/master/app/assets/images/qcx_diagram.png)
 
 ### Seeds
 Para consumir os dados foi implementado a importação através do seeds, onde tive a preocupação de rodar em paralelismo (utilizando a gem 'parallel') para que os dados possam ser importados com mais velocidade.
